@@ -7,8 +7,8 @@ import ExtraCurriculars from './ExtraCurriculars';
 import './App.css';
 
 const App = () => {
-  // Determine basename from package.json homepage or set to your repository name
-  const basename = process.env.NODE_ENV === 'production' ? '/<repository-name>' : '/';
+  // Determine basename from package.json homepage
+  const basename = process.env.NODE_ENV === 'production' ? '/kamakshi-kalagara' : '/';
   
   // State for navbar scroll effect
   const [scrolled, setScrolled] = useState(false);
