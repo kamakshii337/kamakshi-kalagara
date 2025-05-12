@@ -4,13 +4,30 @@
     "title": "Macroeconomics for Business Management",
     "issuer": "Mahindra University | Coursera",
     "date": "March 2023",
-    "image": "./assets/macroeconomics_cert.jpg"
+    "image": "/src/assets/macroeconomics_cert.jpg",
+    "description": "Comprehensive course on macroeconomic principles and their application to business decision-making."
   },
   {
     "id": 2,
     "title": "Digital Marketing Course",
     "issuer": "Udemy",
     "date": "April 2025",
-    "image": "./assets/digital_marketing_course_cert.jpg"
+    "image": "/src/assets/digital_marketing_course_cert.jpg",
+    "description": "Advanced digital marketing strategies focusing on SEO, social media marketing, and analytics."
+  },  {
+    "id": 3,
+    "title": "Business Case Development",
+    "issuer": "Mahindra University",
+    "date": "February 2025",
+    "image": "/src/assets/business_case_development_cert.jpg",
+    "description": "Specialized training in developing comprehensive business cases and investment proposals."
+  },
+  {
+    "id": 4,
+    "title": "Innovation Cell",
+    "issuer": "Mahindra University",
+    "date": "April 2025",
+    "image": "/src/assets/innovation_cell_mahindra_cert.jpg",
+    "description": "Recognition for contributions to the university's innovation initiatives and projects."
   }
 ]
