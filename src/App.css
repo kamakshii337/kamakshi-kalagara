@@ -1,0 +1,228 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font */
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Lighter background */
+  color: #343a40; /* Darker text for better contrast */
+  line-height: 1.6;
+}
+
+.navbar {
+  background-color: #343a40; /* Darker navbar */
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin-right: 1.5rem; /* Increased spacing */
+}
+
+.navbar a {
+  color: #f8f9fa; /* Light text on dark navbar */
+  text-decoration: none;
+  font-weight: 500; /* Slightly less bold */
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover, .navbar a.active {
+  color: #007bff; /* Accent color for hover/active */
+  text-decoration: none;
+}
+
+.home-header {
+  text-align: center;
+  padding: 4rem 2rem; /* Increased padding */
+  background-color: #007bff; /* Primary accent color */
+  color: white;
+}
+
+.profile-pic {
+  width: 180px; /* Larger profile picture */
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  border: 5px solid white; /* Border around profile picture */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.home-header h1 {
+    color: white; /* Ensure h1 in home-header is white */
+    margin-bottom: 0.5rem;
+}
+
+.home-header p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.home-content, .projects, .certificates, .extra-curriculars {
+  padding: 2rem;
+  max-width: 900px; /* Wider content area */
+  margin: 2rem auto; /* Add top/bottom margin */
+  background-color: #ffffff; /* White background for content sections */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* General heading styles */
+h1, h2 {
+  color: #343a40; /* Consistent heading color */
+  margin-bottom: 1rem;
+}
+
+.projects h1, .certificates h1, .extra-curriculars h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+.projects section, .extra-curriculars section {
+  margin-bottom: 2.5rem; /* Increased spacing between sections */
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e9ecef; /* Separator line */
+}
+
+.projects section:last-child, .extra-curriculars section:last-child {
+  border-bottom: none;
+}
+
+.projects h2, .extra-curriculars h2 {
+  color: #007bff; /* Accent color for section titles */
+  font-size: 1.8rem;
+}
+
+.projects ul {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+.projects ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Certificate specific styling */
+.certificate-item {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  transition: box-shadow 0.3s ease;
+}
+
+.certificate-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-item h2 {
+  color: #007bff;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.certificate-item img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 1rem;
+  display: block; /* Center image */
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 400px; /* Limit image height */
+  object-fit: contain; /* Ensure image is not distorted */
+}
+
+.certificate-item p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar li {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .home-header {
+    padding: 2rem 1rem;
+  }
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+  .home-content, .projects, .certificates, .extra-curriculars {
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
