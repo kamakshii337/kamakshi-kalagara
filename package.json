@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://<your-github-username>.github.io/<repository-name>",
+  "homepage": "https://kamakshii337.github.io/kamakshi-kalagara",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --repo https://github.com/kamakshii337/kamakshi-kalagara.git"
   },
   "dependencies": {
     "react": "^19.1.0",
