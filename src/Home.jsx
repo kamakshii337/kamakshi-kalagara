@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import profilePic from './assets/profile_pic.jpg';
 import './App.css';
 
@@ -44,6 +45,15 @@ const Home = () => {
           human resources, digital marketing, and project management. I am committed to 
           continuous learning and professional growth in the evolving digital landscape.
         </p>
+        
+        <div className="home-cta-buttons">
+          <NavLink to="/portfolio" className="cta-button primary">
+            View My Portfolio <span className="cta-arrow">→</span>
+          </NavLink>
+          <NavLink to="/projects" className="cta-button secondary">
+            Explore Projects <span className="cta-arrow">→</span>
+          </NavLink>
+        </div>
         
         <h2>Skills</h2>
         <div className="skills-container">

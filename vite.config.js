@@ -5,4 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/kamakshi-kalagara/',
+  assetsInclude: ['**/*.docx'], // Ensure .docx files are handled as assets
 })

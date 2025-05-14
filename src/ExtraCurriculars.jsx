@@ -1,5 +1,113 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+
+// Import all slideshow media
+const slideshowMedia = [
+  // Images
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.16.jpeg', import.meta.url).href,
+    caption: '' 
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.18 (1).jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.18.jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.19 (1).jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.19.jpeg', import.meta.url).href,
+    caption: '' 
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.20.jpeg', import.meta.url).href,
+    caption: '' 
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.21.jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.24.jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.25.jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.26.jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.27 (1).jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.27.jpeg', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'image',
+    src: new URL('./assets/slideshow/WhatsApp Image 2025-05-14 at 12.05.28.jpeg', import.meta.url).href,
+    caption: ''
+  },
+  // Videos  
+  { 
+    type: 'video', 
+    src: new URL('./assets/slideshow/WhatsApp Video 2025-05-14 at 12.05.17.mp4', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'video',
+    src: new URL('./assets/slideshow/WhatsApp Video 2025-05-14 at 12.05.21.mp4', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'video',
+    src: new URL('./assets/slideshow/WhatsApp Video 2025-05-14 at 12.05.22.mp4', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'video',
+    src: new URL('./assets/slideshow/WhatsApp Video 2025-05-14 at 12.05.23.mp4', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'video',
+    src: new URL('./assets/slideshow/WhatsApp Video 2025-05-14 at 12.05.29.mp4', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'video',
+    src: new URL('./assets/slideshow/WhatsApp Video 2025-05-14 at 12.05.30.mp4', import.meta.url).href,
+    caption: ''
+  },
+  { 
+    type: 'video',
+    src: new URL('./assets/slideshow/WhatsApp Video 2025-05-14 at 12.30.14.mp4', import.meta.url).href,
+    caption: ''
+  }
+];
+
+/* Second declaration removed */
 
 const activities = [
   {
@@ -40,6 +148,74 @@ const activities = [
   }
 ];
 
+const Slideshow = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  // Auto-advance slides when playing
+  useEffect(() => {
+    let interval;
+    if (isPlaying) {
+      interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % slideshowMedia.length);
+      }, 3000); // Change slide every 3 seconds
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying]);
+  
+  // Go to next slide
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slideshowMedia.length);
+  };
+  
+  // Go to previous slide
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slideshowMedia.length) % slideshowMedia.length);
+  };
+  
+  // Toggle play/pause
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+  
+  const media = slideshowMedia[currentSlide];
+  
+  return (
+    <div className="slideshow-container">
+      <h2>Activity Gallery</h2>
+      <div className="slideshow">
+        <div className="slide">
+          {media.type === 'image' ? (
+            <img src={media.src} alt={`${media.caption || `Slide ${currentSlide + 1}`}`} />
+          ) : (
+            <video 
+              src={media.src} 
+              controls={!isPlaying} 
+              autoPlay={isPlaying} 
+              muted={isPlaying} 
+              onEnded={nextSlide}
+            />
+          )}
+        </div>
+        
+        {/* <div className="slide-caption">
+          <p>{media.caption || `Slide ${currentSlide + 1}`}</p>
+        </div> */}
+        
+        <div className="slideshow-controls">
+          <button onClick={prevSlide}>❮ Previous</button>
+          <button onClick={togglePlay}>{isPlaying ? '⏸️ Pause' : '▶️ Play'}</button>
+          <button onClick={nextSlide}>Next ❯</button>
+        </div>
+        
+        <div className="slideshow-info">
+          {currentSlide + 1} / {slideshowMedia.length}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ExtraCurriculars = () => {
   return (
     <div className="extra-curriculars">
@@ -73,6 +249,9 @@ const ExtraCurriculars = () => {
           </div>
         ))}
       </div>
+      
+      {/* Activity Gallery Slideshow */}
+      <Slideshow />
     </div>
   );
 };

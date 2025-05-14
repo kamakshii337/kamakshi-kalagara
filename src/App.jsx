@@ -4,6 +4,8 @@ import Home from './Home';
 import Projects from './Projects';
 import Certificates from './Certificates';
 import ExtraCurriculars from './ExtraCurriculars';
+import Portfolio from './Portfolio';
+import Resume from './Resume';
 import './App.css';
 
 const App = () => {
@@ -107,9 +109,11 @@ const App = () => {
             <div className={`navbar-menu ${mobileMenuOpen ? 'active' : ''}`}>
               <ul>
                 <li><NavLink to="/" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Home</NavLink></li>
+                <li><NavLink to="/portfolio" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Portfolio</NavLink></li>
                 <li><NavLink to="/projects" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Projects</NavLink></li>
                 <li><NavLink to="/certificates" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Certificates</NavLink></li>
                 <li><NavLink to="/extra-curriculars" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Extra-Curriculars</NavLink></li>
+                <li><NavLink to="/resume" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Resume</NavLink></li>
               </ul>
             </div>
           </div>
@@ -118,9 +122,11 @@ const App = () => {
         <div className="content-container">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/certificates" element={<Certificates />} />
             <Route path="/extra-curriculars" element={<ExtraCurriculars />} />
+            <Route path="/resume" element={<Resume />} />
           </Routes>
         </div>
         
