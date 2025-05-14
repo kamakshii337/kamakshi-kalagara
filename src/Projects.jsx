@@ -4,15 +4,15 @@ import './App.css';
 const projectsData = [
   {
     id: 1,
-    title: "Black Fuel Roastery",
-    description: "Built a strong brand presence and increased footfall for a specialty coffee café in Jubilee Hills, Hyderabad.",
+    title: "Capstone Presentation - Black Fuel Roastery",
+    description: "limited adoption of digital mental health solutions in India.",
     points: [
-      "Performed market analysis and competitor study to identify target demographics and brand positioning.",
-      "Planned customer engagement campaigns including influencer collaborations and feedback contests.",
-      "Developed an integrated marketing strategy with a focus on Instagram and Google listings.",
-      "Successfully increased online engagement and customer visits by creating a consistent digital brand identity."
+      "To gain firsthand insights into the adoption and perception of digital mental health solutions, we conducted interviews with professionals from both the mental health and corporate/educational sectors",
+      "In addition to expert interviews, we conducted a focus group discussionwith 10 students currently pursuing their education in the field of psychology at the Arundhathi Institute of Medical Sciences And Hospital.",
+      "The session was held on campus in a classroom setting and lasted approximately 60 minutes.",
     ],
-    tags: ["Marketing", "Brand Development", "Market Analysis"]
+    tags: ["Digital Mental Health", "Research", "Interviews", "Focus Group Discussion", "Presentation"],
+    presentation: "/assets/Capstone presentation.pdf"
   },
   {
     id: 2,
@@ -21,34 +21,41 @@ const projectsData = [
     points: [
       "Installed IR sensors at multiple entry and exit points to monitor real-time foot traffic.",
       "Integrated Arduino microcontroller to collect sensor data and determine crowd levels.",
-      "Developed a dashboard for temple authorities to view live crowd data and trends.",
-      "Successfully built and tested a smart crowd monitoring system for religious institutions."
+      "Used threshold-based alert mechanism to trigger automatic warnings when the crowd exceeded safe limits.",
+      "Developed a dashboard for temple authorities to view live crowd data and trends for timely action.",
+      "Simulated the system in controlled environments to test sensor accuracy and communication latency.",
+      "Planned for future integration with LED signage and mobile alerts for public guidance.",
+      "Successfully built and tested a smart crowd monitoring system to ensure public safety and prevent overcrowding."
     ],
-    tags: ["IoT", "Crowd Management", "Safety Systems"]
+    tags: ["IoT", "Arduino", "Crowd Management", "Safety Systems", "Sensor Integration"]
   },
   {
     id: 3,
     title: "Student Payment App (SPA)",
-    description: "Developed a student payment app to simplify transactions and provide a seamless campus payment solution.",
+    description: "Developed a student payment app that empowers students and simplifies transactions, providing a seamless campus payment solution.",
     points: [
       "Conducted thorough User Research via surveys, interviews, and focus groups with students.",
-      "Conducted the SWOT analysis of existing payment apps to identify market gaps.",
+      "Performed SWOT analysis of existing payment apps to identify market gaps.",
       "Prototyped the user interface with Wireframes, Mockups, and User Testing.",
-      "Implemented risk management and compliance strategies for data protection laws."
+      "Established strategic partnerships for implementation and adoption.",
+      "Implemented risk management and compliance strategies for data protection laws (GDPR) and payment industry standards (PCI-DSS).",
+      "Successfully developed and launched the SPA, enabling students to effortlessly manage campus transactions."
     ],
-    tags: ["FinTech", "UX/UI Design", "Market Research"]
+    tags: ["FinTech", "UX/UI Design", "Market Research", "Digital Payments", "Compliance"]
   },
   {
     id: 4,
     title: "Marketplace Simulations",
-    description: "Managed a 3D-printed carbon fiber bike company within a simulated marketplace, driving it towards success.",
+    description: "Managed a 3D-printed carbon fiber bike company within a simulated marketplace, bringing it to success by handling all aspects of the business.",
     points: [
       "Developed a comprehensive business plan and budget allocation strategy.",
       "Led the hiring process, selecting and onboarding team members.",
       "Designed and launched marketing campaigns to build brand awareness.",
-      "Successfully secured investment from venture capitalist, demonstrating effective strategic planning."
+      "Implemented strategies to enhance customer satisfaction and retention.",
+      "Negotiated with a venture capitalist to secure investment for company growth.",
+      "Successfully achieved business success, demonstrating effective management and strategic planning."
     ],
-    tags: ["Business Strategy", "Financial Planning", "Team Leadership"]
+    tags: ["Business Strategy", "Financial Planning", "Team Leadership", "Customer Satisfaction", "Venture Capital"]
   }
 ];
 
@@ -68,8 +75,8 @@ const Projects = () => {
       <h1>Projects</h1>
       
       <p className="section-intro">
-        A collection of academic and professional projects showcasing my skills in business strategy, 
-        market analysis, and digital technology implementation.
+        A collection of academic and professional projects showcasing my expertise in business strategy, 
+        market analysis, digital technology implementation, and innovative problem-solving.
       </p>
       
       <div className="project-filters">
@@ -88,7 +95,7 @@ const Projects = () => {
         {filteredProjects.map(project => (
           <section 
             key={project.id}
-            className={`project-card ${activeProject === project.id ? 'active' : ''}`}
+            className={`project-card ${activeProject === project.id ? 'active' : ''} ${project.id === 1 ? 'featured-project' : ''}`}
             onClick={() => setActiveProject(activeProject === project.id ? null : project.id)}
           >
             <div className="project-header">
@@ -114,6 +121,19 @@ const Projects = () => {
               <span className="view-more">
                 {activeProject === project.id ? 'Show Less' : 'View Details'}
               </span>
+              {project.presentation && (
+                <button 
+                  className="view-presentation-btn"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent toggling the project details
+                    // Handle GitHub Pages base URL for production
+                    const basePath = import.meta.env.BASE_URL || '/';
+                    window.open(`${basePath}${project.presentation.replace(/^\//, '')}`, '_blank');
+                  }}
+                >
+                  View Capstone PDF
+                </button>
+              )}
             </div>
           </section>
         ))}
