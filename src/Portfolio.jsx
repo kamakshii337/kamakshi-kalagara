@@ -28,6 +28,23 @@ const portfolioItems = [
   {
     id: 2,
     category: 'capstone',
+    title: 'Capstone Project: Digital Mental Health Solutions in India',
+    date: '6th Semester',
+    description: 'Research project focused on understanding the limited adoption of digital mental health solutions in India through comprehensive interviews and focus group discussions.',
+    highlights: [
+      'Conducted interviews with professionals from both the mental health and corporate/educational sectors to gain firsthand insights',
+      'Organized a focus group discussion with 10 psychology students at Arundhathi Institute of Medical Sciences And Hospital',
+      'Held a 60-minute on-campus session in a classroom setting to gather detailed qualitative data',
+      'Analyzed adoption patterns and perceptions of digital mental health solutions in the Indian context'
+    ],
+    skills: ['Research Methodology', 'Digital Mental Health', 'Qualitative Analysis', 'Focus Group Facilitation', 'Interview Techniques'],
+    documents: [
+      { name: 'Capstone Presentation', file: 'assets/Capstone presentation.pdf' }
+    ]
+  },
+  {
+    id: 3,
+    category: 'project',
     title: 'Black Fuel Roastery Marketing Strategy',
     date: '5th Semester',
     description: 'Led a comprehensive marketing strategy development for a specialty coffee café in Jubilee Hills, Hyderabad, focused on increasing brand presence and customer footfall.',
@@ -37,13 +54,10 @@ const portfolioItems = [
       'Created an integrated social media approach with emphasis on Instagram and Google listings',
       'Successfully established the café as a go-to destination for coffee enthusiasts'
     ],
-    skills: ['Market Analysis', 'Brand Development', 'Digital Marketing', 'Customer Engagement'],
-    documents: [
-      { name: 'Capstone Presentation', file: capstonePresentation }
-    ]
+    skills: ['Market Analysis', 'Brand Development', 'Digital Marketing', 'Customer Engagement']
   },
   {
-    id: 3,
+    id: 4,
     category: 'project',
     title: 'IoT-Based Crowd Management System',
     date: '5th Semester',
@@ -62,59 +76,62 @@ const portfolioItems = [
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [expandedItem, setExpandedItem] = useState(null);
-  
-  const filteredItems = activeFilter === 'all' 
-    ? portfolioItems 
+
+  const filteredItems = activeFilter === 'all'
+    ? portfolioItems
     : portfolioItems.filter(item => item.category === activeFilter);
-  
+
   const toggleExpand = (id) => {
     setExpandedItem(expandedItem === id ? null : id);
   };
-  
+
   const openDocument = (file) => {
-    window.open(file, '_blank');
+    // Handle GitHub Pages base URL for production
+    const basePath = import.meta.env.BASE_URL || '/';
+    const cleanPath = file.replace(/^(src\/)?/, '');
+    window.open(`${basePath}${cleanPath}`, '_blank');
   };
-  
+
   return (
     <div className="portfolio-page">
       <h1>Professional Portfolio</h1>
-      
+
       <p className="section-intro">
-        A collection of my professional experiences, capstone project, and key academic achievements 
+        A collection of my professional experiences, capstone project, and key academic achievements
         that showcase my skills and growth in the field of Business Administration with Digital Technologies.
       </p>
-      
+
       <div className="portfolio-filters">
-        <button 
+        <button
           className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
           onClick={() => setActiveFilter('all')}
         >
           All Items
         </button>
-        <button 
+        <button
           className={`filter-btn ${activeFilter === 'work-experience' ? 'active' : ''}`}
           onClick={() => setActiveFilter('work-experience')}
         >
           Work Experience
         </button>
-        <button 
+        <button
           className={`filter-btn ${activeFilter === 'capstone' ? 'active' : ''}`}
           onClick={() => setActiveFilter('capstone')}
         >
           Capstone Project
         </button>
-        <button 
+        <button
           className={`filter-btn ${activeFilter === 'project' ? 'active' : ''}`}
           onClick={() => setActiveFilter('project')}
         >
           Other Projects
         </button>
       </div>
-      
+
       <div className="portfolio-items">
         {filteredItems.map(item => (
-          <div 
-            key={item.id} 
+          <div
+            key={item.id}
             className={`portfolio-item ${expandedItem === item.id ? 'expanded' : ''}`}
             onClick={() => toggleExpand(item.id)}
           >
@@ -122,9 +139,9 @@ const Portfolio = () => {
               <h2>{item.title}</h2>
               <span className="portfolio-item-date">{item.date}</span>
             </div>
-            
+
             <p className="portfolio-item-description">{item.description}</p>
-            
+
             <div className={`portfolio-item-details ${expandedItem === item.id ? 'show' : ''}`}>
               <div className="portfolio-item-content">
                 {item.responsibilities && (
@@ -137,7 +154,7 @@ const Portfolio = () => {
                     </ul>
                   </div>
                 )}
-                
+
                 {item.highlights && (
                   <div className="portfolio-highlights">
                     <h3>Project Highlights</h3>
@@ -148,7 +165,7 @@ const Portfolio = () => {
                     </ul>
                   </div>
                 )}
-                
+
                 {item.skills && (
                   <div className="portfolio-skills">
                     <h3>Skills Applied</h3>
@@ -159,13 +176,13 @@ const Portfolio = () => {
                     </div>
                   </div>
                 )}
-                
+
                 {item.documents && item.documents.length > 0 && (
                   <div className="portfolio-documents">
                     <h3>Related Documents</h3>
                     <div className="portfolio-documents-list">
                       {item.documents.map((doc, index) => (
-                        <button 
+                        <button
                           key={index}
                           className="portfolio-document-btn"
                           onClick={(e) => {
@@ -182,7 +199,7 @@ const Portfolio = () => {
                 )}
               </div>
             </div>
-            
+
             <div className="portfolio-item-footer">
               <button className="view-details-btn">
                 {expandedItem === item.id ? 'Show Less' : 'Show More'}
