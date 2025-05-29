@@ -6,12 +6,13 @@ import Certificates from './Certificates';
 import ExtraCurriculars from './ExtraCurriculars';
 import Portfolio from './Portfolio';
 import Resume from './Resume';
+import Recommendations from './Recommendations';
 import './App.css';
 
 const App = () => {
   // Determine basename from package.json homepage
   const basename = process.env.NODE_ENV === 'production' ? '/kamakshi-kalagara' : '/';
-  
+
   // State for navbar scroll effect
   const [scrolled, setScrolled] = useState(false);
   // State for scroll-to-top button visibility
@@ -36,7 +37,7 @@ const App = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -57,7 +58,7 @@ const App = () => {
   const toggleMobileMenu = () => {
     const newMenuState = !mobileMenuOpen;
     setMobileMenuOpen(newMenuState);
-    
+
     // Add or remove the menu-open class on body to prevent scrolling
     if (newMenuState) {
       document.body.classList.add('menu-open');
@@ -81,7 +82,7 @@ const App = () => {
       window.removeEventListener('scroll', closeMobileMenu);
     };
   }, [mobileMenuOpen]);
-  
+
   // Clean up body class when component unmounts
   useEffect(() => {
     return () => {
@@ -97,7 +98,7 @@ const App = () => {
             <div className="navbar-brand">
               <NavLink to="/" onClick={closeMobileMenu}>KK</NavLink>
             </div>
-            
+
             <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
               <div className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}>
                 <span></span>
@@ -114,11 +115,12 @@ const App = () => {
                 <li><NavLink to="/certificates" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Certificates</NavLink></li>
                 <li><NavLink to="/extra-curriculars" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Extra-Curriculars</NavLink></li>
                 <li><NavLink to="/resume" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Resume</NavLink></li>
+                <li><NavLink to="/recommendations" className={({ isActive }) => isActive ? "active" : ""} onClick={closeMobileMenu}>Recommendations</NavLink></li>
               </ul>
             </div>
           </div>
         </nav>
-        
+
         <div className="content-container">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -127,11 +129,12 @@ const App = () => {
             <Route path="/certificates" element={<Certificates />} />
             <Route path="/extra-curriculars" element={<ExtraCurriculars />} />
             <Route path="/resume" element={<Resume />} />
+            <Route path="/recommendations" element={<Recommendations />} />
           </Routes>
         </div>
-        
+
         {/* Scroll to top button */}
-        <div 
+        <div
           className={`scroll-top ${showScrollTop ? 'visible' : ''}`}
           onClick={scrollToTop}
         >

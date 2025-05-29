@@ -4,18 +4,18 @@ import './App.css';
 const projectsData = [
   {
     id: 1,
-    title: "Capstone Presentation - Black Fuel Roastery",
+    title: "Capestone Project: Digital Mental Health Solutions in India",
     description: "limited adoption of digital mental health solutions in India.",
     points: [
       "To gain firsthand insights into the adoption and perception of digital mental health solutions, we conducted interviews with professionals from both the mental health and corporate/educational sectors",
       "In addition to expert interviews, we conducted a focus group discussionwith 10 students currently pursuing their education in the field of psychology at the Arundhathi Institute of Medical Sciences And Hospital.",
       "The session was held on campus in a classroom setting and lasted approximately 60 minutes.",
     ],
-    tags: ["Digital Mental Health", "Research", "Interviews", "Focus Group Discussion", "Presentation"],
-    presentation: "/assets/Capstone presentation.pdf"
+    tags: ["Capestone", "Digital Mental Health", "Research", "Interviews", "Focus Group Discussion"],
+    presentation: "assets/Capstone presentation.pdf"
   },
   {
-    id: 2,
+    id: 3,
     title: "Crowd Management in Temple Using IoT",
     description: "Designed an IoT-based system to manage crowd density and enhance safety in heavily visited temples.",
     points: [
@@ -30,7 +30,7 @@ const projectsData = [
     tags: ["IoT", "Arduino", "Crowd Management", "Safety Systems", "Sensor Integration"]
   },
   {
-    id: 3,
+    id: 4,
     title: "Student Payment App (SPA)",
     description: "Developed a student payment app that empowers students and simplifies transactions, providing a seamless campus payment solution.",
     points: [
@@ -44,7 +44,7 @@ const projectsData = [
     tags: ["FinTech", "UX/UI Design", "Market Research", "Digital Payments", "Compliance"]
   },
   {
-    id: 4,
+    id: 5,
     title: "Marketplace Simulations",
     description: "Managed a 3D-printed carbon fiber bike company within a simulated marketplace, bringing it to success by handling all aspects of the business.",
     points: [
@@ -62,27 +62,27 @@ const projectsData = [
 const Projects = () => {
   const [filter, setFilter] = useState('all');
   const [activeProject, setActiveProject] = useState(null);
-  
+
   // Get unique tags from all projects
   const allTags = ['all', ...new Set(projectsData.flatMap(project => project.tags))];
-  
-  const filteredProjects = filter === 'all' 
-    ? projectsData 
+
+  const filteredProjects = filter === 'all'
+    ? projectsData
     : projectsData.filter(project => project.tags.includes(filter));
-    
+
   return (
     <div className="projects">
       <h1>Projects</h1>
-      
+
       <p className="section-intro">
-        A collection of academic and professional projects showcasing my expertise in business strategy, 
+        A collection of academic and professional projects showcasing my expertise in business strategy,
         market analysis, digital technology implementation, and innovative problem-solving.
       </p>
-      
+
       <div className="project-filters">
         {allTags.map(tag => (
-          <button 
-            key={tag} 
+          <button
+            key={tag}
             className={`filter-btn ${filter === tag ? 'active' : ''}`}
             onClick={() => setFilter(tag)}
           >
@@ -90,10 +90,10 @@ const Projects = () => {
           </button>
         ))}
       </div>
-      
+
       <div className="projects-container">
         {filteredProjects.map(project => (
-          <section 
+          <section
             key={project.id}
             className={`project-card ${activeProject === project.id ? 'active' : ''} ${project.id === 1 ? 'featured-project' : ''}`}
             onClick={() => setActiveProject(activeProject === project.id ? null : project.id)}
@@ -106,9 +106,9 @@ const Projects = () => {
                 ))}
               </div>
             </div>
-            
+
             <p className="project-desc">{project.description}</p>
-            
+
             <div className={`project-details ${activeProject === project.id ? 'show' : ''}`}>
               <ul>
                 {project.points.map((point, index) => (
@@ -116,19 +116,20 @@ const Projects = () => {
                 ))}
               </ul>
             </div>
-            
+
             <div className="project-footer">
               <span className="view-more">
                 {activeProject === project.id ? 'Show Less' : 'View Details'}
               </span>
               {project.presentation && (
-                <button 
+                <button
                   className="view-presentation-btn"
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent toggling the project details
                     // Handle GitHub Pages base URL for production
                     const basePath = import.meta.env.BASE_URL || '/';
-                    window.open(`${basePath}${project.presentation.replace(/^\//, '')}`, '_blank');
+                    const cleanPath = project.presentation.replace(/^(src\/)?/, '');
+                    window.open(`${basePath}${cleanPath}`, '_blank');
                   }}
                 >
                   View Capstone PDF

@@ -84,10 +84,10 @@ const Resume = () => {
   const handleDownloadResume = () => {
     // Get the base URL for the application (handles both development and production)
     const baseUrl = import.meta.env.BASE_URL || '/';
-    
+
     // Use the file from the public directory which is always accessible at the root
     const resumeFilePath = `${baseUrl}resume.docx`;
-    
+
     window.open(resumeFilePath, '_blank');
   };
 
@@ -140,6 +140,28 @@ const Resume = () => {
           <div className="info-item">
             <span className="info-label">Interests:</span>
             <span className="info-value">{personalInfo.interests}</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="resume-video-intro">
+        <h2>Video Introduction</h2>
+        <div className="video-container">
+          <video
+            controls
+            preload="metadata"
+            className="intro-video"
+            poster={`${import.meta.env.BASE_URL || '/'}assets/video-poster.jpg`}
+          >
+            <source src={`${import.meta.env.BASE_URL || '/'}intro_video.mp4`} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="video-description">
+            <p>
+              Get to know me better through this personal introduction where I share my
+              background, aspirations, and what drives me in the field of Digital Technologies
+              and Business Administration.
+            </p>
           </div>
         </div>
       </section>
